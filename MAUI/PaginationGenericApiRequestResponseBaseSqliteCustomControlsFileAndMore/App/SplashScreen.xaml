@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI" 
+              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sysmed.SplashScreen" >
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#03b1fc" StatusBarStyle="Default" />
+    </Page.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <skia:SKLottieView Grid.Row="0" 
+                           Source="doctors.json"
+                            VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand" 
+                  RepeatMode="Restart" RepeatCount="3"
+                           />
+        <Label Grid.Row="1"
+               Text="SysMed"
+               HorizontalOptions="Center" 
+               FontSize="35"
+               TextColor="#03b1fc"
+               />
+    </Grid>
+
+
+
+
+</ContentPage>

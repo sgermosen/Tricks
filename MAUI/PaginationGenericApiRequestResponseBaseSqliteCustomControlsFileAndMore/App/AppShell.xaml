@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="sysmed.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:sysmed"
+    xmlns:dashboardPages="clr-namespace:sysmed.Views"
+    xmlns:models="clr-namespace:sysmed.Model"
+    Shell.TabBarIsVisible="False"
+    xmlns:startupPages="clr-namespace:sysmed.Views" 
+    xmlns:view="clr-namespace:sysmed.Views">
+    <!--FlyoutBehavior="Disabled"-->
+    <!--auto burger menu -->
+
+    <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}" Route="LoadingPage" />
+
+    <ShellContent
+        Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoginPage}"
+        Route="LoginPage" />
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+
+        <ShellContent 
+        Title="Pacientes" Icon="{x:Static models:Icons.People}"
+        ContentTemplate="{DataTemplate view:PatientsPage}"
+        Route="PatientsPage" />
+        
+        <ShellContent 
+        Title="Sobre el App" Icon="{x:Static models:Icons.Dashboard}"
+        ContentTemplate="{DataTemplate view:DashboardPage}"
+        Route="DashboardPage" />
+        
+        <!--<ShellContent 
+        Title="Appointments"
+        ContentTemplate="{DataTemplate view:AppointmentsPage}"
+        Route="Appointments" />-->
+        
+        <!--<ShellContent 
+        Title="Main Page"
+        ContentTemplate="{DataTemplate view:MainPage}"
+        Route="MainPage" />-->
+
+      
+
+        <!--<ShellContent 
+        Title="People" Icon="{x:Static models:Icons.People}"
+        ContentTemplate="{DataTemplate view:DashboardPage}"
+         />-->
+
+        <!--<ShellContent 
+        Title="Contact" Icon="{x:Static models:Icons.ContactUs}"
+        ContentTemplate="{DataTemplate view:AboutPage}"
+         />-->
+        <ShellContent 
+        Title="Sobre Mi" Icon="{x:Static models:Icons.AboutUs}"
+        ContentTemplate="{DataTemplate view:AboutPage}"
+         />
+    </FlyoutItem>
+    
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Cerrar Session" Command="{Binding SignOutCommand}" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>
+<!--  
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" ApplyToDerivedTypes="True" />
+        </ResourceDictionary>
+    </Shell.Resources>--><!-- 
+   
+</Shell>-->

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MersyRd.Views.StudentDashboardPage"
+             Title="StudentDashboardPage">
+    <StackLayout Padding="10">
+        <Label FontSize="18" Text="Welcome to Student Dashboard Page" />
+
+        <CollectionView ItemsSource="{Binding Users}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding FirstName}" />
+                            <Label Text="{Binding LastName}" />
+                        </HorizontalStackLayout>
+                        <Label Text="{Binding Email}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

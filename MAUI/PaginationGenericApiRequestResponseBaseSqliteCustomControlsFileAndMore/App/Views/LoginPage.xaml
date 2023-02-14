@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             xmlns:handlers="clr-namespace:sysmed.Handlers"
+             xmlns:converters="clr-namespace:sysmed.Converters"
+             Title="LoginPage"  
+              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="sysmed.Views.LoginPage"
+             BackgroundColor="#f2f2f2">
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#03b1fc" StatusBarStyle="Default" />
+    </Page.Behaviors>
+    <ContentPage.Resources>
+        <converters:LoadingTextConverter x:Key="LoadingTextConverter" />
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" /> 
+    </ContentPage.Resources>
+    <StackLayout Padding="30" Spacing="25">
+     
+        <Image Source="sysmedtemplogo.png" HeightRequest="150" WidthRequest="150" />
+
+        <StackLayout Spacing="5">
+            <Label Text="SysMed" 
+                   FontSize="28" 
+                   TextColor="#03b1fc" 
+                   HorizontalTextAlignment="Center" 
+                   FontFamily="Open Sans" />
+            <Label Text="Accede a tu cuenta" 
+                   FontSize="18" 
+                   TextColor="#03b1fc" 
+                   HorizontalTextAlignment="Center" 
+                   FontFamily="Open Sans" />
+        </StackLayout>
+
+        <StackLayout Spacing="10">
+            <StackLayout Orientation="Horizontal">
+                
+                <Image Source="email.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                <Frame HeightRequest="45" 
+                   Padding="0" 
+                   HasShadow="True" 
+                   BorderColor="#03b1fc" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand">
+                    <handlers:BorderlessEntry Text="{Binding Email}" 
+                                         Margin="20,0,0,0" 
+                                         VerticalOptions="Center" 
+                                         Placeholder="Email" 
+                                         Keyboard="Email" 
+                                         FontFamily="Open Sans"
+                                         PlaceholderColor="Gray"/>
+                </Frame>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="lock.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                <Frame HeightRequest="45" 
+                   Padding="0" 
+                   HasShadow="True" 
+                   BorderColor="#03b1fc" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand">
+                    <handlers:BorderlessEntry Text="{Binding Password}" 
+                                         Margin="20,0,0,0" 
+                                         VerticalOptions="Center" 
+                                         Placeholder="Password" 
+                                         IsPassword="True" 
+                                         FontFamily="Open Sans"
+                                         PlaceholderColor="Gray"/>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+
+
+        <StackLayout>
+            <Button Text="Acceder" 
+            WidthRequest="100" 
+            CornerRadius="20" 
+            HorizontalOptions="Center"
+            BackgroundColor="#03b1fc"
+            TextColor="White"
+            FontFamily="Open Sans" IsEnabled="{Binding IsNotBusy}"
+            Command="{Binding LoginCommand}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        </StackLayout>
+       
+
+        <!--<StackLayout Orientation="Horizontal" 
+                     Spacing="5" 
+                     HorizontalOptions="Center">
+            <Label Text="¿No tienes cuenta?" 
+                   TextColor="Gray" 
+                   FontFamily="Open Sans">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignUpCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Registrate aquí" 
+                   TextColor="#03b1fc" 
+                   FontFamily="Open Sans"
+                   FontAttributes="Bold">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignUpCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" 
+                     Spacing="5" 
+                     HorizontalOptions="Center">
+            <Label Text="¿Olvidaste tu contraseña?" 
+                   TextColor="Gray" 
+                   FontFamily="Open Sans">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Recuperar aquí" 
+                TextColor="#03b1fc" 
+                FontFamily="Open Sans"
+                FontAttributes="Bold">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>--> 
+
+
+    </StackLayout>
+</ContentPage>

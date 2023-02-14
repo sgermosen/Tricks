@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sysmed.Views.PatientAddUpdatePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:sysmed.ViewModel"
+    x:DataType="viewmodel:PatientAddUpdateViewModel"
+    Title="{Binding Title}">
+    <ScrollView             VerticalOptions="FillAndExpand" >
+        <StackLayout        Margin="5" 
+                            Spacing="5">
+            <VerticalStackLayout>
+                <Label      Text="Fecha de Nacimiento"  />
+                <DatePicker Date="{Binding Patient.BornDate}"  
+                            MinimumDate="01/01/1900"
+                            MaximumDate="12/12/2050"  />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Tipo de Sangre"  />-->
+                <Picker     Title="Seleccione un tipo de Sangre"
+                            ItemsSource="{Binding BloodTypes}"
+                            ItemDisplayBinding="{Binding Name}" 
+                            SelectedItem="{Binding BloodType}" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="ID/DNI/Cedula" />-->
+                <Entry      Text="{Binding Patient.Rnc}" 
+                            Placeholder="ID/DNI/Cedula" Keyboard="Numeric" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Nombre" />-->
+                <Entry      Text="{Binding Patient.Name}" 
+                            Placeholder="Nombres" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Apellido" />-->
+                <Entry      Text="{Binding Patient.LastName}" 
+                            Placeholder="Apellidos" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Numero de Seguro" />-->
+                <Entry      Text="{Binding Patient.InsuranceNumber}" 
+                            Placeholder="Numero de Seguro" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <!--<VerticalStackLayout>
+                <Label      Text="Nss" />
+                <Entry      Text="{Binding Patient.Nss}" 
+                            Placeholder="Nss" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>-->
+            <!--<VerticalStackLayout>
+                <Label      Text="Cel" />
+                <Entry      Text="{Binding Patient.Cel}" 
+                            Placeholder="Cel" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>-->
+            <VerticalStackLayout>
+                <!--<Label      Text="Tel" />-->
+                <Entry      Text="{Binding Patient.Tel}" 
+                            Placeholder="Tel" Keyboard="Telephone" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Email" />-->
+                <Entry      Text="{Binding Patient.Email}" 
+                            Placeholder="Email" Keyboard="Email" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <!--<Label      Text="Direccion" />-->
+                <Entry      Text="{Binding Patient.Address}" 
+                            Placeholder="Direccion" Keyboard="Text" />
+                <BoxView    HeightRequest="0.8" 
+                            Color="Gray" />
+            </VerticalStackLayout> 
+            <StackLayout    Orientation="Horizontal">
+                <Image      WidthRequest="50"
+                            HeightRequest="50"
+                            Grid.Column="0"
+                            VerticalOptions="Start"
+                            Source="ic_action_add_a_photo.png">
+                 <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TakePictureCommand}"/>
+                 </Image.GestureRecognizers>
+                </Image>
+                <Image      Grid.Column="1"
+                            Source="{Binding ImageSource, Mode=TwoWay}"
+                            Aspect="AspectFill"
+                            WidthRequest="200"
+                            HeightRequest="200">    
+                </Image>
+            </StackLayout> 
+            <Button         Text="Guardar" 
+                            Command="{Binding AddUpdatePatientCommand}" 
+                            IsEnabled="{Binding IsNotBusy}"/>
+        </StackLayout>
+    </ScrollView> 
+</ContentPage>

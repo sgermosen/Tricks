@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sysmed.Views.AboutPage"
+             Title="Sobre Mi">
+
+    <ScrollView>
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+            </Grid.RowDefinitions>
+
+            <!-- header background -->
+            <Image Source="headerbackground.png" Aspect="AspectFill"/>
+            <Image Source="curvedmask.png" VerticalOptions="End" Aspect="AspectFill" Margin="0,0,0,-1"/>
+
+            <!-- profile image -->
+            <Image Source="yopapucho_circ" Margin="0,0,0,-50" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="End"/>
+
+            <!-- Profile Name -->
+            <StackLayout Grid.Row="1" HorizontalOptions="Center" Padding="0,50,0,00">
+                <Label HorizontalTextAlignment="Center" Text="Ing. Starling Germosen Reynoso" Style="{StaticResource ProfileNameLabel}"/>
+                <Label HorizontalTextAlignment="Center" Text="Movil &amp; Backend Software Developer" Margin="0,-5" Style="{StaticResource ProfileTagLabel}"/>
+            </StackLayout>
+
+            <!-- Social Stats Section -->
+            <Grid Grid.Row="2" ColumnSpacing="0" RowSpacing="0" Margin="0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout  Grid.Column="0">
+                    <Button Text="Web" BackgroundColor="Transparent" TextColor="Blue"  
+                Command="{Binding TapCommand}"
+                CommandParameter="https://sgermosen.com" />
+                </StackLayout>
+
+                <StackLayout Grid.Column="1">
+                    <Button Text="Github" BackgroundColor="Transparent" TextColor="Blue"  
+                Command="{Binding TapCommand}"
+                CommandParameter="https://github.com/sgermosen" />
+                </StackLayout>
+
+                <StackLayout Grid.Column="2">
+                    <Button Text="LinkedIn" BackgroundColor="Transparent" TextColor="Blue"  
+                Command="{Binding TapCommand}"
+                CommandParameter="https://www.linkedin.com/in/sgermosen/" />
+                </StackLayout>
+            </Grid>
+
+            <!-- profile description -->
+            <ScrollView Grid.Row="3">
+                <Label Margin="20,0" HorizontalTextAlignment="Center" 
+                       Style="{StaticResource MainBodyLabel}" 
+                Text="Software Engineer with 10+ years of experience developing web-based and mobile solutions involved in the whole software development life cycle. Currently focused on back-end development, working with robust architecture in agile teams, incorporating tools like C#, VB.Net, ASP.Net Core, Xamarin, Flutter, Node, SQL, WordPress, etc, with experience in leadership on personal and enterprise projects." />
+            </ScrollView>
+            <Button Grid.Row="4"  TextColor="White"  >
+                <Button.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding EmailCommand}" CommandParameter="sgermosen@outlook.com" />
+                </Button.GestureRecognizers>
+                <Button.Text>
+                   Contratame!
+                </Button.Text>
+            </Button>
+
+            <!-- follow button -->
+            <!--<Button Grid.Row="4" Text="Follow" Margin="20" 
+                    VerticalOptions="End" 
+                    Style="{StaticResource FollowButton}"/>-->
+
+        </Grid>
+    </ScrollView>
+
+
+
+</ContentPage>

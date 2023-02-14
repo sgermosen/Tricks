@@ -1,0 +1,74 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:sysmed.Model"
+    xmlns:viewmodel="clr-namespace:sysmed.ViewModel" 
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:DataType="viewmodel:PatientsViewModel"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="True"
+    x:Class="sysmed.Views.PatientsPage"  >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddUpdatePatientCommand}" >
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="Android, UWP"
+                        Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ScrollView >
+        <StackLayout Margin="3">
+            <StackLayout Orientation="Horizontal">
+                <SearchBar x:Name="searchBar" Text="{Binding SearchTerm, Mode=TwoWay}"     
+                   SearchCommand="{Binding GetPatientsSearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                       HorizontalOptions="CenterAndExpand"  Placeholder="Escriba un criterio de busqueda" />
+            </StackLayout>
+            <RefreshView Grid.ColumnSpan="2"
+                  Command="{Binding GetMoreItemsCommand}"
+                  IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView     RemainingItemsThreshold="4"
+                                    RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}"
+                    ItemsSource="{Binding Patients, Mode=TwoWay}"
+                    SelectionMode="None" EmptyView="No hay registros cargados...">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Patient">
+                            <Grid Padding="0">
+                                <Frame HeightRequest="125" CornerRadius="5" BackgroundColor="LightGray" Margin="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:PatientsViewModel}},
+                                        Path=GoToDetailsCommand}"
+                                              CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid Padding="0" ColumnDefinitions="100,*">
+                                        <Frame CornerRadius="40" Padding="0">
+                                            <Image Aspect="AspectFill" Source="{Binding ImageLink}"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand"/>
+                                        </Frame>
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            Padding="5">
+                                            <Label Style="{StaticResource MediumLabel}" Text="{Binding Record2}" />
+                                            <Label Style="{StaticResource MediumLabel}" Text="{Binding FullName}" />
+                                            <Label Style="{StaticResource MicroLabel}" Text="{Binding Rnc, StringFormat='Cedula: {0}'}" />
+                                            <Label Style="{StaticResource MicroLabel}" Text="{Binding Age, StringFormat='Edad: {0}'}" />
+                                            <Label Style="{StaticResource MicroLabel}" Text="{Binding Tel, StringFormat='Tel: {0}'}" />
+                                            <Label Style="{StaticResource MicroLabel}" Text="{Binding InsuranceNumber, StringFormat='Seguro No: {0}'}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </RefreshView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="sysmed.Views.PatientDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:sysmed.ViewModel"
+    x:DataType="viewmodel:PatientDetailsViewModel"
+    Title="{Binding Patient.Record2}">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto,*" 
+                  RowDefinitions="50, Auto">
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    Background="{StaticResource Primary}"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand" />
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    HorizontalOptions="Center" 
+                    Padding="0"
+                    IsClippedToBounds="True"
+                    CornerRadius="80">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="{Binding Patient.ImageLink}"
+                        WidthRequest="100"/>
+                </Frame>
+            </Grid>
+
+            <!--<Button Text="Show on Map" Command="{Binding OpenMapCommand}" 
+                 HorizontalOptions="Center" WidthRequest="200" Margin="8"
+                   Style="{StaticResource ButtonOutline}" />-->
+
+            <VerticalStackLayout    Padding="10" 
+                                    Spacing="10"> 
+                <Label              Style="{StaticResource MediumLabel}" 
+                                    Text="{Binding Patient.FullName}" />
+                <Label              VerticalOptions="Start" 
+                                    Style="{StaticResource MediumLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Tipo de Sangre: {0}">
+                            <Binding Path="Patient.BloodTypeName" /> 
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label              VerticalOptions="Start" 
+                                    Style="{StaticResource MicroLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="ID/DNI/Ced: {0}">
+                            <Binding Path="Patient.Rnc" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label VerticalOptions="Start" Style="{StaticResource MicroLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Tel: {0} | Email: {1}">
+                            <Binding Path="Patient.Tel" />
+                            <Binding Path="Patient.Email" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label VerticalOptions="Start" Style="{StaticResource MicroLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Direccion: {0}">
+                            <Binding Path="Patient.Address" /> 
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <!--<Label VerticalOptions="Start" Style="{StaticResource MicroLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Aseguradora: {2} | Seguro No: {0} | Nss: {1}">
+                            <Binding Path="Patient.InsuranceNumber" />
+                            <Binding Path="Patient.Nss" />
+                            <Binding Path="Patient.InsuranceName" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>-->
+                <!--<Label VerticalOptions="Start" Style="{StaticResource MicroLabel}">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Acompañante: {0} | {1}">
+                            <Binding Path="Patient.CompanionRnc" />
+                            <Binding Path="Patient.Companion" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>-->
+                
+
+            </VerticalStackLayout>
+            <Button 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="White" 
+                    CornerRadius="0"
+                    BorderColor="#BFBFBF"
+                    BorderWidth="2"
+                    TextColor="Gray"
+                    Opacity="50"
+                    FontSize="Medium"
+                    Text="Listado de Citas" 
+                    Command="{Binding GoToAppointmentsCommand}"
+                                                  CommandParameter="{Binding .}" />
+            <Button 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="White" 
+                    CornerRadius="0"
+                    BorderColor="#BFBFBF"
+                    BorderWidth="2"
+                    TextColor="Gray"
+                    Opacity="50"
+                    FontSize="Medium"
+                    Text="Listado de Imagenes" 
+                    Command="{Binding GoToImagesCommand}"
+                                                  CommandParameter="{Binding .}" />
+          
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

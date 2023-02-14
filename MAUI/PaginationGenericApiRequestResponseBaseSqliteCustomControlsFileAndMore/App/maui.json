@@ -1,0 +1,12 @@
+{
+  "Application": {
+    "Name": "SysMed",
+    "AssemblyName": "sysmed.dll",
+    "Version": "1.0.0",
+    "Splash": {
+      "Background": "SplashScreen",
+      "Foreground": "Splash/splash.svg",
+      "Delay": 3000
+    }
+  }
+}
